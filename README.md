@@ -1,6 +1,11 @@
 # js-studies-tree
-It's a simple project used for studies and proof of concepts.
+ It's a simple project used for studies and proof of concepts.
 
-## Instructions
+## Installing the dependencies:
 
-*It's requires NPM or YARN or some Node package manager.
+```bash
+npm install
+```
+
+## Testing the "NumberOfChildrenByParendId" function
+ It's a function that for a given array of objects with the required attributes: "id" and "parentId"
