@@ -1,38 +1,16 @@
-export const NumberOfChildrenByParentId = (array = [], idAttribute = "id", parentIdAttribute = "parentId", id) => {
+export function NumberOfChildrenByParentId(items, parentId) {
 
-    const ids = [id];
-    let count = 0;
-    array.forEach(item => {
-        const founded = ids.
-        filter(idx => item[idAttribute] === idx || item[parentIdAttribute] === idx).length;
-        if (founded) {
-            ids.push(item[idAttribute]);
-        }
-        count += founded;
-    });
+    if (!items)
+        return 0;
 
-    return count ? count - 1 : count;
+    const filteredArray = items.filter(item => item['parentId'] === parentId);
 
-}
+    if (!filteredArray.length)
+        return 0;
 
-export const NumberOfChildrenByParentIdUsingMapReduce = (array = [], idAttribute = "id", parentIdAttribute = "parentId", id) => {
-    const result = array
-        .map(item => {
-            let result = {};
-            if (item[idAttribute]) {
-                result[item[idAttribute]] = 1;
-            }
-            if (item[parentIdAttribute]) {
-                result[item[parentIdAttribute]] = 1;
-            }
-            return result;
-        })
-        .reduce((acc, act) => {
-            for (let field in act) {
-                acc[field] += act[field];
-            }
-            return acc;
-        })[id];
-    return result ? result : 0;
+    return filteredArray.length +
+        filteredArray.map(currentItem => {
+            return NumberOfChildrenByParentId(items, currentItem['id']);
+        }).reduce((acc, val) => acc + val);
 
 }
