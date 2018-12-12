@@ -1,5 +1,5 @@
 /**
- * Returns the number of direct and indirect children from a given array of objects regarding to a given parent id
+ * Returns the number of direct and indirect children from a given array of objects regarding a given parent id
  * 
  * @param {Array<{id:number;parendId:number}>} items 
  * @param {number} parentId 
