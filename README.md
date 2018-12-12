@@ -8,4 +8,10 @@ npm install
 ```
 
 ## Testing the "NumberOfChildrenByParendId" function
- It's a function that for a given array of objects with the required attributes: "id" and "parentId"
+  
+ The "NumberOfChildrenByParentId" function returns the number of direct and indirect children from a given array of objects regarding a given parent id.
+
+```base
+npm run test
+```
+![JEST output](https://github.com/dearrudam/js-studies-tree/raw/master/screenshot/Screenshot%20from%202018-12-12%2001-04-52.png)
