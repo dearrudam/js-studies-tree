@@ -4,43 +4,41 @@ import {
 
 describe(`Testing ${NumberOfChildrenByParentId.name} function`, () => {
 
+    const objectArray = [
+        { id: 0, parentId: null},
+        { id: 4, parentId: 3},
+        { id: 1, parentId: 0},
+        { id: 3, parentId: 2},
+        { id: 2, parentId: 0}
+    ];
 
-    const arrayValue = `[
-        { "id": 0, "parentId": null},
-        { "id": 4, "parentId": 3},
-        { "id": 1, "parentId": 0},
-        { "id": 3, "parentId": 2},
-        { "id": 2, "parentId": 0}
-    ]`;
-
-    const arrayObject = JSON.parse(arrayValue);
-
-    const scenarios = [{
-            "items": arrayObject,
+    const scenarios = [
+        {
+            "items": objectArray,
             "givenId": 3,
             "expectedValue": 1
         },
         {
 
-            "items": arrayObject,
+            "items": objectArray,
             "givenId": 0,
             "expectedValue": 4
         },
         {
 
-            "items": arrayObject,
+            "items": objectArray,
             "givenId": 2,
             "expectedValue": 2
         },
         {
 
-            "items": arrayObject,
+            "items": objectArray,
             "givenId": 1,
             "expectedValue": 0
         },
         {
 
-            "items": arrayObject,
+            "items": objectArray,
             "givenId": 4,
             "expectedValue": 0
         },
@@ -62,11 +60,10 @@ describe(`Testing ${NumberOfChildrenByParentId.name} function`, () => {
             "givenId": null,
             "expectedValue": 0
         }
-
     ];
 
     scenarios.forEach(scenario => {
-        it(`For the array:\n\t${JSON.stringify(scenario.items)}\n\tGiven '${scenario.givenId}' as id then the number of children should be ${scenario.expectedValue}`, () => {
+        it(`Given the array:\n\t${JSON.stringify(scenario.items)}\n\tCase it's passed '${scenario.givenId}' as parent id then the number of children should be equals to ${scenario.expectedValue}`, () => {
             expect(NumberOfChildrenByParentId(scenario.items, scenario.givenId)).toBe(scenario.expectedValue);
         });
     });
