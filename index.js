@@ -20,10 +20,10 @@ export function NumberOfChildrenByParentId(items, parentId) {
   return (
     directChildren.length +
     directChildren
-      // getting the number of indirect children for each direct children. Right here starts a recursive invocation
-      .map(currentItem => NumberOfChildrenByParentId(items, currentItem['id']))
-      // accounting the numbers of indirect children discovered with the direct children number
-      .reduce((acc, val) => acc + val)
+    // getting the number of indirect children for each direct children. Right here starts a recursive invocation
+    .map(currentItem => NumberOfChildrenByParentId(items, currentItem['id']))
+    // accounting the numbers of indirect children discovered with the direct children number
+    .reduce((acc, val) => acc + val)
   )
 }
 
@@ -49,14 +49,14 @@ export function NumberOfChildrenByParentId2(items, parentId) {
   items.forEach(item => {
     if (item['id'] != null) { // avoiding objects without a valid 'id' attribute
       if (!map[item['id']]) { // checking if the current id is mapped already 
-         map[item['id']] = [] // mapping the current id to an empty array of children
+        map[item['id']] = [] // mapping the current id to an empty array of children
       }
     }
 
     if (item['id'] != item['parentId']) { // ignoring possible cyclic references
       if (item['parentId'] != null) { // ignoring objects with invalid 'parentId' attribute
-        if (!shouldCompute) {   // once it's checked, do nothing 
-          shouldCompute = parentId === item['parentId']  // checking if it's should compute
+        if (!shouldCompute) { // once it's checked, do nothing 
+          shouldCompute = parentId === item['parentId'] // checking if it's should compute
         }
         const key = `${item['parentId']}` // creating a const var in order to keep the current parent id 
         if (map[key]) { // checking if there is an array already mapped for the current parent id
@@ -78,8 +78,9 @@ export function NumberOfChildrenByParentId2(items, parentId) {
     })
     return count
   }
+  console.log(map)
 
-  let count = 0  // variable that stores the whole children count
+  let count = 0 // variable that stores the whole children count
 
   if (shouldCompute) { // checking it it's needed to compute
     // accumulating the direct children count with its children count
@@ -88,4 +89,3 @@ export function NumberOfChildrenByParentId2(items, parentId) {
 
   return count
 }
-
